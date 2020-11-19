@@ -10,14 +10,6 @@ import (
     "strconv"
 )
 
-type ResponseError struct {
-    Error string `json:"error"`
-}
-
-type ResponseSuccess struct {
-    Response string `json:"response"`
-}
-
 func main() {
     conn, err := grpc.Dial("localhost:4040", grpc.WithInsecure())
     if err != nil {
@@ -75,50 +67,3 @@ func main() {
     }
 
 }
-
-//type AddServiceRoutes struct {
-//    client *proto.AddServiceClient
-//}
-//
-//func (add *AddServiceRoutes) fill(e *echo.Echo, client *proto.AddServiceClient) error {
-//    add.client = client
-//    e.GET("/add/:a/:b", add.addRoute)
-//    e.GET("/multiply/:a/:b", add.multiplyRoute)
-//    return nil
-//}
-//
-//func (add *AddServiceRoutes) addRoute(c echo.Context) error {
-//    a, err := strconv.ParseUint(c.Param("a"),10, 64)
-//    if err != nil {
-//        return c.String(http.StatusInternalServerError, "Error: a not defined")
-//    }
-//
-//    b, err := strconv.ParseUint(c.Param("a"),10, 64)
-//    if err != nil {
-//        return c.String(http.StatusInternalServerError, "Error: a not defined")
-//    }
-//
-//    req := &proto.Request{A: int64(a), B: int64(b)}
-//
-//    if response, err := add.client.Add(c, req); err == nil  {
-//        c.JSON()
-//    }
-//
-//
-//    return c.String(http.StatusOK, strconv.FormatUint(result, 10))
-//}
-//
-//func (add *AddServiceRoutes) multiplyRoute(c echo.Context) error {
-//    a, err := strconv.ParseUint(c.Param("a"),10, 64)
-//    if err != nil {
-//        return c.String(http.StatusInternalServerError, "Error: a not defined")
-//    }
-//
-//    b, err := strconv.ParseUint(c.Param("a"),10, 64)
-//    if err != nil {
-//        return c.String(http.StatusInternalServerError, "Error: a not defined")
-//    }
-//    result := a * b
-//    return c.String(http.StatusOK, strconv.FormatUint(result, 10))
-//}
-
