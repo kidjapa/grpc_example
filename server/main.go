@@ -9,7 +9,9 @@ import (
     "server_main_land/proto"
 )
 
-type server struct{}
+type server struct{
+    proto.UnimplementedAddServiceServer
+}
 
 func main() {
     listner, err := net.Listen("tcp", ":4040")
